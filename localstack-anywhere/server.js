@@ -6,7 +6,7 @@ var cors = require('cors')
 // create a server
 var app = express();
 app.use(cors())
-var proxy = httpProxy.createProxyServer({ target: 'http://localhost', ws: true }).on("error", (e) => {
+var proxy = httpProxy.createProxyServer({ target: `http://${process.env.LOCALSTACK_INSTANCE_IP}`, ws: true }).on("error", (e) => {
             console.log(e);
         });
 var server = require('http').createServer(app);
@@ -30,4 +30,4 @@ server.on('upgrade', function (req, socket, head) {
 // serve static content
 app.use('/', express.static(__dirname + "/public"));
 
-server.listen(3000);
+server.listen(4566);
