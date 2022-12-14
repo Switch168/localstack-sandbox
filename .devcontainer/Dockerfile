@@ -28,11 +28,13 @@ RUN groupadd --gid $USER_GID $USERNAME \
 #     wget "http://...../${arch}.deb"
 
 
-RUN yum install -y python3 wget \
+RUN yum install -y python3 wget unzip git \
     && pip3 install awscli --upgrade
-# TODO: arm and x86 only 
+# TODO: arm and x86
 RUN wget https://releases.hashicorp.com/terraform/1.3.6/terraform_1.3.6_linux_arm64.zip
+RUN unzip terraform_1.3.6_linux_arm64.zip
 RUN sudo mv terraform /usr/local/bin/
+RUN pip3 install awscli-local
 
 # [Optional] Set the default user. Omit if you want to keep the default as root.
 USER $USERNAME

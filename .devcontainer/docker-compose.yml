@@ -26,6 +26,19 @@ services:
 
   aws:
     container_name: localstack
-    image: localstack/localstack
+    # image: localstack/localstack
+    image: localstack/localstack-pro
+    network_mode: bridge
     ports:
-      - "4583:4583"
+      - "53:53"                # only required for Pro
+      - "53:53/udp"            # only required for Pro
+      - "443:443"              # only required for Pro
+      - "4510-4530:4510-4530"  # only required for Pro
+      - "4566:4566"
+      - "4571:4571"
+    environment:
+      EDGE_BIND_HOST: 0.0.0.0
+      # LOCALSTACK_API_KEY: xxxxxxxxxx inside devcontainer.env
+    env_file: devcontainer.env
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
