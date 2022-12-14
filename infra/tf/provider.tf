@@ -1,7 +1,7 @@
 provider "aws" {
-  access_key = "test"
-  secret_key = "test"
-  region  = "us-east-1"
+  access_key                  = "test"
+  secret_key                  = "test"
+  region                      = "us-east-1"
   skip_credentials_validation = true
   skip_metadata_api_check     = true
   skip_requesting_account_id  = true
@@ -9,10 +9,11 @@ provider "aws" {
   endpoints {
 
     acm            = "http://localhost:4566"
-    eks            = "http://localhost:4566"  
+    eks            = "http://localhost:4566"
     apigateway     = "http://localhost:4566"
     cloudformation = "http://localhost:4566"
     cloudwatch     = "http://localhost:4566"
+    cloudwatchlogs = "http://localhost:4566"
     dynamodb       = "http://localhost:4566"
     es             = "http://localhost:4566"
     firehose       = "http://localhost:4566"
@@ -30,6 +31,6 @@ provider "aws" {
     stepfunctions  = "http://localhost:4566"
     sts            = "http://localhost:4566"
     ec2            = "http://localhost:4566"
-  }  
+  }
 
 }
