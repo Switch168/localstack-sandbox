@@ -13,7 +13,7 @@ resource "aws_eks_cluster" "cluster" { # Here we create the EKS cluster itself.
   depends_on = [
     aws_iam_role_policy_attachment.policy-AmazonEKSClusterPolicy,
     aws_iam_role_policy_attachment.policy-AmazonEKSVPCResourceController,
-    aws_cloudwatch_log_group.eks_cluster_control_plane_components
+    # aws_cloudwatch_log_group.eks_cluster_control_plane_components
   ]
 }
 
@@ -41,8 +41,17 @@ resource "aws_iam_role_policy_attachment" "policy-AmazonEKSVPCResourceController
   role       = aws_iam_role.eks_cluster.name
 }
 
-resource "aws_cloudwatch_log_group" "eks_cluster_control_plane_components" { # To log control plane components
-  name              = "/aws/eks/${var.cluster_name}/cluster"
-  retention_in_days = 7
-}
+# bug in localstack
+# resource "aws_cloudwatch_log_group" "eks_cluster_control_plane_components" { # To log control plane components
+#   name              = "${var.cluster_name}_aws_cloudwatch_log_group"
+#   retention_in_days = 7
+# }
 
+# resource "aws_cloudwatch_log_group" "yada" {
+#   name = "Yada"
+
+#   tags = {
+#     Environment = "production"
+#     Application = "serviceA"
+#   }
+# }
